@@ -9,6 +9,23 @@ before_install:
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file multi-k8s-254703-478c06327da3.json
+  - docker build -t vijaybhatt23051989/client-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true vijaybhatt23051989/client-test npm run test
+
+after_success:
+  - docker build -t vijaybhatt23051989/multi-client ./client
+  - docker build -t vijaybhatt23051989/multi-nginx ./nginx
+  - docker build -t vijaybhatt23051989/multi-server ./server
+  - docker build -t vijaybhatt23051989/multi-worker ./worker
+  # Login to docker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Push images to docker hub
+  - docker push vijaybhatt23051989/multi-client
+  - docker push vijaybhatt23051989/multi-nginx
+  - docker push vijaybhatt23051989/multi-server
+  - docker push vijaybhatt23051989/multi-worker
 
 
 
