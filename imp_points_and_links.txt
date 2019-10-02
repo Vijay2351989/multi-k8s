@@ -1,0 +1,27 @@
+AWS EB Instance Name :
+
+
+AWS RDS (Relational Database Service)
+Instance Name : multi-docker-postgres
+Username : postgres
+Password : postgrespassword
+databasename : fibvalues
+
+AWS Elastic Cache (Redis)
+Instance Name : multi-docker-redis
+
+
+Security Group Id for above instances :
+sg-0f3ee55ad0e38ff46
+
+
+ingress-nginx, a community led project:
+github.com/kubernetes/ingress-nginx
+
+kubernetes-ingress, led by the company nginx
+github.com/nginxinc/kubernetes-ingress
+
+optional reading of ingress nginx:
+Slide 231 link
+
+
